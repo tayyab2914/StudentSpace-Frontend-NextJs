@@ -10,7 +10,13 @@ export async function getServerSideProps(context) {
     // Replace the URL with your actual API endpoint.
     const res = await axios.get(`https://admin.studentspace.website/feedback/reviews/?faculty_id=${id}`);
     const data = res.data;
+
+    // Redirect on the server-side
     return {
+      redirect: {
+        destination: `https://studentspace.online/faculty/${id}`,
+        permanent: false, // This is a temporary redirect (you can set it to true for permanent redirects)
+      },
       props: {
         faculty: data.faculty, // contains name, designation, image_url, etc.
       },
@@ -22,24 +28,13 @@ export async function getServerSideProps(context) {
 }
 
 export default function FacultyPage({ faculty }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    console.log("Hello brother")
-    // Delay the redirect to allow social media scrapers to get the meta tags.
-    const timer = setTimeout(() => {
-      // Replace with your original React website URL.
-      window.location.href = `https://studentspace.online/faculty/${faculty.id}`;
-    }, 3000); // 5-second delay
-    return () => clearTimeout(timer);
-  }, [faculty]);
-
+  // Since we perform a server-side redirect, this code will not run for the user.
   return (
     <>
       <Head>
         {/* Page Title */}
         <title>{faculty.name}</title>
-        
+
         {/* Standard description meta */}
         <meta name="description" content={faculty.designation} />
 
@@ -53,16 +48,9 @@ export default function FacultyPage({ faculty }) {
         <meta name="twitter:title" content={faculty.name} />
         <meta name="twitter:description" content={faculty.designation} />
         <meta name="twitter:image" content={faculty.image_url} />
-        
-
-        {/* Optional: meta refresh for automatic redirection (if you prefer HTML-based redirect) */}
-        {/* <meta http-equiv="refresh" content="5; url=https://studentspace.online/faculty/{faculty.id}" /> */}
       </Head>
 
       <main style={{ textAlign: 'center', marginTop: '2rem' }}>
-        {/* <h1>{faculty.name}</h1>
-        <p>{faculty.designation}</p>
-        <img src={faculty.image_url} alt={faculty.name} style={{ borderRadius: '50%' }} /> */}
         <p>Loading...</p>
       </main>
     </>
