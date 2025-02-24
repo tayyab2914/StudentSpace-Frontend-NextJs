@@ -30,7 +30,7 @@ export default function FacultyPage({ faculty }) {
     const timer = setTimeout(() => {
       // Replace with your original React website URL.
       window.location.href = `https://studentspace.online/faculty/${faculty.id}`;
-    }, 50000); // 5-second delay
+    }, 3000); // 5-second delay
     return () => clearTimeout(timer);
   }, [faculty]);
 
@@ -47,23 +47,24 @@ export default function FacultyPage({ faculty }) {
         <meta property="og:title" content={faculty.name} />
         <meta property="og:description" content={faculty.designation} />
         <meta property="og:image" content={faculty.image_url} />
+        <meta property="og:url" content={`https://www.studentspace.online/faculty/${faculty.id}`} />
 
         {/* Twitter card meta tags */}
         <meta name="twitter:title" content={faculty.name} />
         <meta name="twitter:description" content={faculty.designation} />
         <meta name="twitter:image" content={faculty.image_url} />
+        
 
         {/* Optional: meta refresh for automatic redirection (if you prefer HTML-based redirect) */}
-        {/* <meta http-equiv="refresh" content="5; url=https://your-react-site.com/faculty/{faculty.id}" /> */}
+        {/* <meta http-equiv="refresh" content="5; url=https://studentspace.online/faculty/{faculty.id}" /> */}
       </Head>
 
       <main style={{ textAlign: 'center', marginTop: '2rem' }}>
-        <h1>{faculty.name}</h1>
+        {/* <h1>{faculty.name}</h1>
         <p>{faculty.designation}</p>
-        <img src={faculty.image_url} alt={faculty.name} style={{ borderRadius: '50%' }} />
-        <p>Redirecting to the full site...</p>
+        <img src={faculty.image_url} alt={faculty.name} style={{ borderRadius: '50%' }} /> */}
+        <p>Loading...</p>
       </main>
-      <p>Hello how are you</p>
     </>
   );
 }
