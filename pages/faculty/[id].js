@@ -25,11 +25,12 @@ export default function FacultyPage({ faculty }) {
   const router = useRouter();
 
   useEffect(() => {
+    console.log("Hello brother")
     // Delay the redirect to allow social media scrapers to get the meta tags.
     const timer = setTimeout(() => {
       // Replace with your original React website URL.
       window.location.href = `https://studentspace.online/faculty/${faculty.id}`;
-    }, 5000); // 5-second delay
+    }, 50000); // 5-second delay
     return () => clearTimeout(timer);
   }, [faculty]);
 
@@ -62,6 +63,7 @@ export default function FacultyPage({ faculty }) {
         <img src={faculty.image_url} alt={faculty.name} style={{ borderRadius: '50%' }} />
         <p>Redirecting to the full site...</p>
       </main>
+      <p>Hello how are you</p>
     </>
   );
 }
